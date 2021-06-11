@@ -33,7 +33,7 @@ class MenuItem
   }
 }
 
-public class Voyager 
+public class HotelManagement
 {
   
   static int generateBill()
@@ -78,15 +78,7 @@ public class Voyager
     System.out.println("Connection Established");
     
     Statement stmt = conn.createStatement();
-    
-        //Bill
-       
-        
-//        int a = m.get(0).getPrice(0);
-//        int b = m.get(0).getPrice(1);
-//        int c = m.get(0).getPrice(2);
-   
-        tot_billx = generateBill();
+     tot_billx = generateBill();
       
     
     //1. Insert
@@ -94,8 +86,8 @@ public class Voyager
     
     Scanner sc = new Scanner(System.in);
     
-//    System.out.println("Enter Customer Name : ");
-//    cus_namex = sc.nextLine();
+    System.out.println("Enter Customer Name : ");
+    cus_namex = sc.nextLine();
     
     System.out.println("Enter Order No. : ");
     order_nox = sc.nextInt();
@@ -108,14 +100,9 @@ public class Voyager
     // Inserted to Table (Database)
         System.out.println("Inserting records into the table..."); 
         
-        String ins = "INSERT INTO HotelOrder(order_no, table_no, cust_name, total_bill) VALUES ("+order_nox+", "+table_nox+", 'Neil Tyson',  100)";
+        String ins = "INSERT INTO HotelOrder(order_no, table_no, cust_name, total_bill) VALUES ("+order_nox+", "+table_nox+", "+cus_namex+",  100)";
         stmt.executeUpdate(ins);
         
-        String ins2 = "INSERT INTO HotelOrder(order_no, table_no, cust_name, total_bill) VALUES (102, 202, 'Mark Zuck', 200)";
-        stmt.executeUpdate(ins2);
-        
-        String ins3 = "INSERT INTO HotelOrder(order_no, table_no, cust_name, total_bill) VALUES (103, 203, 'Albert Smith',300)";
-        stmt.executeUpdate(ins3);
         
     //2. Select 
         // Displaying content of Table
@@ -133,15 +120,10 @@ public class Voyager
         
  
     // Update 
-        String upd = "update HotelOrder " + "set cust_name = 'Carl Sagan' where order_no=102";
+        String upd = "update HotelOrder " + "set cust_name = 'Rahul Sharma' where order_no=102";
         stmt.executeUpdate(upd);
-        
-        //Where clause - condition
-//     System.out.println("Fetching records with condition...");
-//         String cd = "order_no, table_no, cust_name, total_bill from HotelOrder" +
-//            " WHERE order_no = 103 ";
-//        rs = stmt.executeQuery(cd);
-rs = stmt.executeQuery(disp);
+
+		rs = stmt.executeQuery(disp);
          while(rs.next()){
             //Display values
            System.out.print(" Order No: " + rs.getInt("order_no"));
